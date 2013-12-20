@@ -25,6 +25,7 @@ var models = require('./models/models');
 **/
 
 require('./routes/custom_fields')(app, models);
+require('./routes/employees')(app, models);
 require('./routes/users')(app, models);
 require('./routes/notifications')(app, models);
 

@@ -1,0 +1,103 @@
+<input type=hidden id=uname value='{{uname}}' />
+<div class="hero-unit" style="padding-bottom: 20px;">
+  <div class="row-fluid" style="text-align: right;">
+    <div style="text-align: left">
+  <p style="float: left; margin-right: 0.5em">
+    <img class="photo" width="160" height="160" src="{{ photo }}">
+  </p>
+  <h3>{{ fullName }}</h3>
+  <h4>{{ position }}</h4>
+  <div>
+    <br>
+    <div class='btn-group'>
+    <button class='btn btn-primary'>save</button>
+    <button class='btn' onclick="window.location.href='/#profile/{{uname}}'">cancel</button>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+  <tbody id='basic'>
+  {{#each basicFields}}
+    <tr><td><strong style='font-size: .8em'>{{label}}:</strong></td><td style='font-size: .8em' class='{{isRequired}}'> <div class="form-group control-group">
+    <input type="hidden" id="_id" value="{{_id}}" />
+{{#if isEditable}}
+    {{#if isTextField}}
+      <input type='text' class="poll" value='{{value}}' />
+    {{/if}}
+    {{#if isTextArea}}
+      <textarea class="poll">{{value}}</textarea>
+    {{/if}}
+    {{#if isDropDown}}
+      <select class="poll">
+      {{#each multVal}}
+         <option selected='{{selected}}'>{{option}}</option>
+      {{/each}}
+      </select>
+    {{/if}}
+    {{#if isRadio}}
+      <div class="btn-group">
+      <input type=hidden class="poll" value='{{value}}' />
+      {{#each multVal}}
+         <button type="button" class="btn btn-default{{active}}" onclick="$(this).closest('td').find('button').each(function(){$(this).removeClass('active')});$(this).addClass('active');$(this).closest('td').find('input').val('{{option}}')">{{option}}</button>
+      {{/each}}
+      </div>
+    {{/if}}
+    {{#if isCheckBox}}
+      <div class="btn-group">
+      {{#each multVal}}
+         <button type="button" class="btn btn-default{{active}}" onclick="$(this).toggleClass('active')">{{option}}</button>
+      {{/each}}
+      </div>
+    {{/if}}
+{{else}}
+{{value}}
+{{/if}}
+<label class="control-label help-inline" style="margin-left: 10px;; display: inline-block;" for="label"></label></div></td>
+    </tr>
+  {{/each}}
+
+  {{#each customField}}
+    <tr><td><strong style='font-size: .8em'>{{label}}:</strong></td><td style='font-size: .8em' class='{{isRequired}}'><div class="form-group control-group">
+    <input type="hidden" id="_id" value="{{_id}}" />
+{{#if isEditable}}
+    {{#if isTextField}}
+      <input type='text' class="poll" value='{{value}}' />
+    {{/if}}
+    {{#if isTextArea}}
+      <textarea class="poll">{{value}}</textarea>
+    {{/if}}
+    {{#if isDropDown}}
+      <select class="poll">
+      {{#each multVal}}
+         <option selected='{{selected}}'>{{option}}</option>
+      {{/each}}
+      </select>
+    {{/if}}
+    {{#if isRadio}}
+      <div class="btn-group">
+      <input type=hidden class="poll" value='{{value}}' />
+      {{#each multVal}}
+         <button type="button" class="btn btn-default{{active}}" onclick="$(this).closest('td').find('button').each(function(){$(this).removeClass('active')});$(this).addClass('active');$(this).closest('td').find('input').val('{{option}}')">{{option}}</button>
+      {{/each}}
+      </div>
+    {{/if}}
+    {{#if isCheckBox}}
+      <div class="btn-group">
+      <input type=hidden class="poll" value='{{value}}' />
+      {{#each multVal}}
+         <button type="button" class="btn btn-default{{active}}" onclick="$(this).toggleClass('active')">{{option}}</button>
+      {{/each}}
+      </div>
+    {{/if}}
+ {{else}}
+{{value}}
+{{/if}}
+<label class="control-label help-inline" style="margin-left: 10px;; display: inline-block;" for="label"></label></div></td></div></td>
+    </tr>
+  {{/each}}
+  </tbody>
+  </table>
+
+    </div>
+  </div>
+</div>

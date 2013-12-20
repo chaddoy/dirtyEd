@@ -8,7 +8,8 @@ define([
         var Router = Backbone.Marionette.AppRouter.extend({
 
             appRoutes: {
-                'sample/:id': 'sample'
+                'sample/:id': 'sample',
+                'employee/:id': 'findEmployee'
             }
         });
 
