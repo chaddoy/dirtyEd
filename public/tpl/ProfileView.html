@@ -6,9 +6,8 @@
 <h4><%- jobPosition %></h4>
 <div>
     <br />
-    <a href="#edit" class="profileAction">Edit</a>
-    <a href="#delete" class="profileAction">Delete</a>
-    <a href="#resetPassword" class="profileAction">Reset Password</a>
+    <a href="#v2/employee/<%- _id %>">Edit</a>
+    <a href="#modal" id="deleteAccount" data-toggle="modal">Delete</a>
 </div>
 <br clear="all" />
 <br clear="all" />
@@ -55,20 +54,35 @@
 	    <%
 	    %>
 	</table>
-
+<!--
 	<div class="alert alert-warning">
 	  <h4 class="alert-heading">Warning</h4>
 	  The phone numbers, email addresses, and Twitter handlers are fake.
 	</div>
-
+ -->
 <style type="text/css">
     .photo {
 	margin-right: 40px;
     }
     a.profileAction {
-	padding: 20px 20px 20px 0px;
+	padding: 20px 20px 20px 20px;
     }
     .profileAction li a {
 	cursor: pointer;
     }
 </style>
+
+<!-- Modal -->
+<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 class="modalTitle"></h3>
+    </div>
+    <div class="modal-body">
+	<p></p>
+    </div>
+    <div class="modal-footer">
+	<button class="btn cancel" data-dismiss="modal" aria-hidden="true">Close</button>
+	<button class="btn btn-danger proceed"></button>
+    </div>
+</div>

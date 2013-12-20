@@ -23,9 +23,10 @@ module.exports = function(app, user) {
 
 
     //temp delete to remove test items
-    app.delete('/profile/:id', deleteUser);
+    // app.delete('/profile/:id', deleteUser);
 
     app.get('/profile/:username', showProfile);
+    app.put('/profile/:username', deleteProfile);
     app.get('/profiles', showBasicProfiles);
 
     app.get('/retrieveArrayOf/:basicField', basicFieldValues);
@@ -69,6 +70,23 @@ module.exports = function(app, user) {
                 });
             }
         });
+    }
+
+    function deleteProfile(req, res) {
+	var id = req.body._id,
+	    update = { $set: { isActive: false } },
+	    option = {};
+
+	user.Users.findByIdAndUpdate(id, update, {}, function(err, docs) {
+	    if(err) {
+		console.log(err);
+		res.send(500, err);
+	    } else {
+		console.log(docs);
+		res.send(200, docs);
+	    }
+
+	})
     }
 
 
@@ -478,7 +496,24 @@ module.exports = function(app, user) {
     }
 
     app.get('/profileTest/:username', function(req, res) {
-
+	// user.Users.update({ _id: '52ae5783c4966fdc1c000002' }, { $push: { "field[1].assignedValue": "Padilla" } }, { upsert: true }, function(err, docs) {
+	//     if(err) {
+	//         console.log(err);
+	//         res.send(500, err);
+	//     } else {
+	//         console.log(docs);
+	//         res.send(200, docs);
+	//     }
+	// });
+	// user.Users.findOne({ _id: '52ae5783c4966fdc1c000002' }, function(err, docs) {
+	//     if(err) {
+	//         console.log(err);
+	//         res.send(500, err);
+	//     } else {
+	//         console.log(docs);
+	//         res.send(200, docs);
+	//     }
+	// });
         async.parallel({
             usernameId: function(callback) {
                 user.customFieldsModel.findOne({

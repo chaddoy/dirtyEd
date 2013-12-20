@@ -154,14 +154,17 @@ directory.Router = Backbone.Router.extend({
 		customFields.fetch({
 		    success: function(fieldData) {
 			self.$content.html(new directory.ProfileView({
-			    collection: {
+			    model: {
 				user    : userData,
 				fields  : fieldData
 			    }
 			}).render().el);
 		    }
 		});
-	    }
+	    },
+	error: function() {
+	    top.location = '/#'
+	}
 	});
 
 	if (!directory.profileView) {
